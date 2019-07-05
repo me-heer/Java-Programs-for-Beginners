@@ -1,0 +1,6 @@
+Java Assignment:
+Write a program to convert USD2 INR and INR2USD
+Write a program to convert binary to decimal and decimal to binary
+Write a program to implement basic calculator
+Write a program to list number divisible by n between n1 and n2 range
+Write a program to display first n prime numbers
