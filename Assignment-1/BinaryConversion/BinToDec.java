@@ -3,8 +3,17 @@ class BinaryConversion
 	public static void main(String args[])
 	{
 		int i;
+		if(args.length != 2)
+		{
+			System.out.println("Enter Valid number of arguments.");
+			System.out.println("e.g.: java BinaryConversion <value> <conversionType>");
+			System.out.println("conversionType: 1 to convert decimal into binary");
+			System.out.println("conversionType: 2 to convert binary into decimal");
+			System.exit(0);
+		}
 		int conversionType = Integer.parseInt(args[1]);
 		int value = Integer.parseInt(args[0]);
+		
 		if(conversionType == 1)
 		{
 			int decimalValue = Integer.parseInt(args[0]);
