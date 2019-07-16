@@ -22,8 +22,7 @@ class HTMLString{
 			}
 			if( !lessFlag & greatFlag)
 			{
-				System.out.print(tempString[i]);
-				answer += "tempString[i]";		
+				System.out.print(tempString[i]);		
 			}
 		}
 		
