@@ -48,12 +48,15 @@ class Triangle extends Shape{
 	}
 }
 
-class shapeImplementation{
+class ShapeImplementation{
 	public static void main(String args[]){
-		Triangle t = new Triangle();
+		System.out.println("Creating a Triangle with: Height = 1, Base = 1");
+		Triangle t = new Triangle();	
 		t.area();
+		System.out.println("Creating a Circle with: Radius = 1");
 		Circle c = new Circle();
 		c.area();
+		System.out.println("Creating a Rectangle with: Height = 1, Width = 1");
 		Rectangle r = new  Rectangle();
 		r.area();
 	}

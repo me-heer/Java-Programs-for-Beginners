@@ -21,7 +21,18 @@ class CompoundInterest implements Interest{
 
 class InterestImplementation{
 	public static void main(String args[]){
-	
+			System.out.println("Computing simple interest:");
+			System.out.println("Principal: 5000");
+			System.out.println("Rate of Interest: 5%");
+			System.out.println("Number of Years: 5");
+			SimpleInterest si = new SimpleInterest();
+			si.interest(5000d,5f,5);
+
+			System.out.println("Computing compound interest:");
+			System.out.println("Principal: 5000");
+			System.out.println("Rate of Interest: 5%");
+			System.out.println("Number of Years: 10");
+
 			CompoundInterest ci = new CompoundInterest();
 			ci.interest(5000,5,10);
 	}

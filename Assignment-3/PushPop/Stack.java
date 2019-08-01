@@ -32,15 +32,24 @@ class Stack{
 
 class mainClass{
 	public static void main(String args[]){
-		Stack s = new Stack(5);
+		System.out.println("Implementing Stack.");
+		System.out.println("Stack size: 3");
+		Stack s = new Stack(3);
+		System.out.println("Pushing 1...");
 		s.push(1);
+		System.out.println("Pushed.");
+		System.out.println("Popping the stack...");
 		int a = s.pop();
+		System.out.println("Popped off value: " + a);
 		a = s.pop();
+		System.out.println("Pushing 1...");
 		s.push(1);
-		s.push(1);
-		s.push(1);
-		s.push(1);
-		s.push(1);
-		s.push(1);
+		System.out.println("Pushing 2...");
+		s.push(2);
+		System.out.println("Pushing 3...");
+		s.push(3);
+		System.out.println("Pushing 4...");
+		s.push(4);
+
 	}
 }
