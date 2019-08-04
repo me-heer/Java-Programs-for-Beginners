@@ -1,8 +1,8 @@
 package model;
 
 public class User{
-	public String name, branch;
-	public int id, balance;
+	String name, branch;
+	public int id, balance = 0;
 	User(String name, String branch, int id)
 	{
 		this.name = name;

@@ -1,10 +1,11 @@
 package model;
 
 public class Media{
-    String isbn, author, publication, version, title, category;
+    public String isbn, author, publication, version, title, category;
     double bookPrice;
     int pages;
-    Media(String isbn, String author){
+    Media(String isbn, String title, String author){
+        this.title = title;
         this.isbn = isbn;
         this.author = author;
     }

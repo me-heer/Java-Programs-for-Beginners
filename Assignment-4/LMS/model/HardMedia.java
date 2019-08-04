@@ -1,9 +1,11 @@
 package model;
 
 public class HardMedia extends Media{
-    double weight;
-    HardMedia(String isbn, String author,double weight){
-        super(isbn,author);
+    public double weight;
+    public int quantity;
+    HardMedia(String isbn, String title, String author,double weight, int quantity){
+        super(isbn,title,author);
         this.weight = weight;
+        this.quantity = quantity;
     }
 }
