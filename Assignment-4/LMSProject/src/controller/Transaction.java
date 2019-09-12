@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.Scanner;
+import view.LibView;
 import model.DataInit;
 
 public class Transaction{
@@ -34,11 +35,21 @@ public class Transaction{
             System.out.println("Semester: " + DataInit.students[i].semester);
             System.out.println("Balance: " + DataInit.students[i].balance);
             System.out.println("Issued Books: ");
-            if(DataInit.students[i].balance < 5)
-            for(int k = 0; k < DataInit.students[i].issuedBooks.length; i++)
-            {
-                System.out.println(DataInit.students[i].issuedBooks[k]);
+            if (DataInit.students[i].balance < view.LibView.MAX_ALLOWED_BOOKS) {
+
+                for (int k = 0; k < DataInit.students[i].issuedBooks.length; k++) {
+                    if (DataInit.students[i].issuedBooks[k] != -1) {
+                        int j = DataInit.students[i].issuedBooks[k];
+                        System.out.println("Title: " + DataInit.hardBooks[j].title);
+                        System.out.println("ISBN: " + DataInit.hardBooks[j].isbn);
+                        System.out.println("Author: " + DataInit.hardBooks[j].author);
+                        System.out.println("Available Quantity of Paperback: " + DataInit.hardBooks[j].quantity);
+                        System.out.println("Weight: " + DataInit.hardBooks[j].weight);
+                    }
+
+                }
             }
+
 
         }
     }
@@ -59,7 +70,7 @@ public class Transaction{
         DataInit.createAccount(name, branch, id, enrollNo, semester);
     }
 
-    public static void issueBook(int userID,int bookID){
+    public static String issueBook(int userID,int bookID){
         int i,j;
         boolean userFound = false;
         String message = "";
@@ -105,8 +116,9 @@ public class Transaction{
             {
                 if(DataInit.hardBooks[j].quantity > 0)
                 {
-                    DataInit.students[i].issuedBooks[5-DataInit.students[i].balance] = Integer.parseInt(DataInit.hardBooks[j].isbn);
+                    DataInit.students[i].issuedBooks[LibView.MAX_ALLOWED_BOOKS - DataInit.students[i].balance] = j;
                     DataInit.students[i].balance--;
+                    DataInit.hardBooks[j].currentUsers[LibView.MAX_BOOK_QUANTITY - DataInit.hardBooks[j].quantity] = i;
                     DataInit.hardBooks[j].quantity--;
                     message += "Successfully issued the book.\n";
                 }
@@ -115,12 +127,12 @@ public class Transaction{
             }
             else
                 message += "Insufficient User Balance.\n";
-            
-            System.out.println("User balance: " + DataInit.students[i].balance);
-            System.out.println("Book quantity: " + DataInit.hardBooks[j].quantity);
+
+            message += "User balance: " + DataInit.students[i].balance;
+            message += "Book quantity: " + DataInit.hardBooks[j].quantity;
         }
         
-        System.out.println(message);
+        return message;
     }
 
 
@@ -168,12 +180,78 @@ public class Transaction{
         {
             DataInit.students[i].balance++;
             DataInit.hardBooks[j].quantity++;
+            for(int m = 0; m < DataInit.students[i].issuedBooks.length; m++)
+            {
+                //find the book
+                if(DataInit.students[i].issuedBooks[m] != -1)
+                if(bookID == Integer.parseInt(DataInit.hardBooks[ DataInit.students[i].issuedBooks[m] ].isbn))
+                {
+                    for(int n = 0; n < DataInit.hardBooks[ DataInit.students[i].issuedBooks[m] ].currentUsers.length; n++)
+                        if(DataInit.hardBooks[ DataInit.students[i].issuedBooks[m] ].currentUsers[n] != -1)
+                        if(DataInit.hardBooks[ DataInit.students[i].issuedBooks[m] ].currentUsers[n] == i)
+                        {
+                            DataInit.hardBooks[ DataInit.students[i].issuedBooks[m] ].currentUsers[n] = -1;
+                            break;
+                        }
+                    DataInit.students[i].issuedBooks[m] = -1;
+                }
+            }
+
             message += "Successfully returned the book.\n";
             message += "User balance: " + DataInit.students[i].balance;
             message += "Book quantity: " + DataInit.hardBooks[j].quantity;
         }
         
         return message;
+    }
+
+    public static void searchBook(String searchString)
+    {
+        int j;
+        String message = "";
+        boolean bookFound = false;
+        for(j = 0; j < DataInit.hardBooks.length; j++)
+        {
+            if(DataInit.hardBooks[j] != null)
+                if( (DataInit.hardBooks[j].title.contains(searchString)) )
+                {
+                    bookFound = true;
+                    break;
+                }
+        }
+        if (j == DataInit.hardBooks.length)
+        {
+            message += "Book not found, please try again.\n";
+        }
+        else if(bookFound)
+        {
+            System.out.println("Book details: ");
+            System.out.println("Title: " + DataInit.hardBooks[j].title);
+            System.out.println("ISBN: " + DataInit.hardBooks[j].isbn);
+            System.out.println("Author: " + DataInit.hardBooks[j].author);
+            System.out.println("Available Quantity of Paperback: " + DataInit.hardBooks[j].quantity);
+            System.out.println("Weight: " + DataInit.hardBooks[j].weight);
+            System.out.println("Current Users:");
+            if(DataInit.hardBooks[j].quantity < LibView.MAX_BOOK_QUANTITY)
+            {
+                for(int k = 0; k < DataInit.hardBooks[j].currentUsers.length; k++)
+                {
+                    if(DataInit.hardBooks[j].currentUsers[k] != -1)
+                    {
+                        int i = DataInit.hardBooks[j].currentUsers[k];
+                        System.out.println("ID: " + DataInit.students[i].id);
+                        System.out.println("Name: " + DataInit.students[i].name);
+                        System.out.println("Branch: " + DataInit.students[i].branch);
+                        System.out.println("Enrollment No.: " + DataInit.students[i].enrollNo);
+                        System.out.println("Semester: " + DataInit.students[i].semester);
+                        System.out.println("Balance: " + DataInit.students[i].balance);
+
+                    }
+
+                }
+            }
+        }
+        System.out.println(message);
     }
 
     public static void searchBook(int bookID){
@@ -201,6 +279,25 @@ public class Transaction{
             System.out.println("Author: " + DataInit.hardBooks[j].author);
             System.out.println("Available Quantity of Paperback: " + DataInit.hardBooks[j].quantity);
             System.out.println("Weight: " + DataInit.hardBooks[j].weight);
+            System.out.println("Current Users:");
+            if(DataInit.hardBooks[j].quantity < LibView.MAX_BOOK_QUANTITY)
+            {
+                for(int k = 0; k < DataInit.hardBooks[j].currentUsers.length; k++)
+                {
+                    if(DataInit.hardBooks[j].currentUsers[k] != -1)
+                    {
+                        int i = DataInit.hardBooks[j].currentUsers[k];
+                        System.out.println("ID: " + DataInit.students[i].id);
+                        System.out.println("Name: " + DataInit.students[i].name);
+                        System.out.println("Branch: " + DataInit.students[i].branch);
+                        System.out.println("Enrollment No.: " + DataInit.students[i].enrollNo);
+                        System.out.println("Semester: " + DataInit.students[i].semester);
+                        System.out.println("Balance: " + DataInit.students[i].balance);
+
+                    }
+
+                }
+            }
 
         }
         System.out.println(message);

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public class StudentUser extends User{
     public String enrollNo;
     public int semester;
@@ -10,5 +12,6 @@ public class StudentUser extends User{
         this.semester = semester;
         this.balance = balance;
         issuedBooks = new int[balance];
+        Arrays.fill(issuedBooks, -1);
     }
 }

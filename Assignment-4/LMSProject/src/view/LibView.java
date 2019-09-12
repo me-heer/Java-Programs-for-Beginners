@@ -3,9 +3,10 @@ package view;
 import model.*;
 import java.util.Scanner;
 import controller.*;
-
-class LibView{
-	static void mainActivity(){
+public class LibView{
+	public static final int MAX_ALLOWED_BOOKS = 5;
+	public static final int MAX_BOOK_QUANTITY = 2;
+	private static void mainActivity(){
 		Scanner input = new Scanner(System.in);
 		while(true){
 			System.out.println("Library Management System");
@@ -22,7 +23,6 @@ class LibView{
 			switch(choice)
 			{
 				case 1 :
-						
 						System.out.println("Enter user ID:");
 						int userID = userIDInput.nextInt();
 						int balance = Transaction.checkBalance(userID); 
@@ -36,19 +36,20 @@ class LibView{
 					userID = userIDInput.nextInt();
 					System.out.println("Enter book ID:"); 
 					int bookID = bookIDInput.nextInt();
-					Transaction.issueBook(userID,bookID); break;
+					System.out.println(Transaction.issueBook(userID,bookID));
+					break;
 				case 3 : 
 					System.out.println("Enter user ID:");
 					userID = userIDInput.nextInt();
 					System.out.println("Enter book ID:"); 
 					bookID = bookIDInput.nextInt();
-					String message = Transaction.returnBook(userID,bookID); 
-					System.out.println(message);
+					System.out.println(Transaction.returnBook(userID,bookID));
 					break;
 				case 4 :
-					System.out.println("Enter book ID:"); 
-					bookID = bookIDInput.nextInt();
-			 		Transaction.searchBook(bookID); break;
+
+					System.out.println("Enter search string:");
+					String searchString = bookIDInput.nextLine();
+			 		Transaction.searchBook(searchString); break;
 				case 5 : Transaction.createAccount(); break;
 				case 6 : Transaction.displayUserDetails();  break;
 				case 7 : input.close();
@@ -59,7 +60,7 @@ class LibView{
 		
 	}
 
-	public static void main(String args[]){
+	public static void main(String[] args){
 		DataInit.initializeData();
 		mainActivity();
 	}
