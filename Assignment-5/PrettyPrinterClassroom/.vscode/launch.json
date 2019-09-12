@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - PrettyPrinter",
+            "request": "launch",
+            "mainClass": "PrettyPrinter",
+            "projectName": "PrettyPrinterClassroom"
+        }
+    ]
+}
