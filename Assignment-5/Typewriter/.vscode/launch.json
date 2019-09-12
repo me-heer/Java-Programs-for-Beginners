@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Typewriter",
+            "request": "launch",
+            "mainClass": "Typewriter",
+            "projectName": "Typewriter"
+        }
+    ]
+}
