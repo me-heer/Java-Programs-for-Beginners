@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package model;
 
 public class SoftMedia extends Media{
@@ -12,4 +13,11 @@ public class SoftMedia extends Media{
         currentUsers = new int[quantity];
         Arrays.fill(currentUsers, -1);
     }
+=======
+package model;
+
+public class SoftMedia{
+    double fileSize;
+    String fileFormat;
+>>>>>>> b6f7356a6ffff5268d36a793b5fa2676e821cd2a
 }
