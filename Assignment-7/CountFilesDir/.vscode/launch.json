@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - CountFilesDir",
+            "request": "launch",
+            "mainClass": "CountFilesDir",
+            "projectName": "CountFilesDir"
+        }
+    ]
+}
