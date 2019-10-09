@@ -1,17 +1,21 @@
-import java.net.*;
 import java.io.*;
-import java.util.Scanner;
+import java.net.*;
 
-class NetworkInput {
-    public static void main(String[] args) throws Exception {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter input URL: ");
-        URL google = new URL(input.nextLine());
-        URLConnection gc = google.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(gc.getInputStream()));
-        String inputLine;
-        while ((inputLine = in.readLine()) != null) 
-            System.out.println(inputLine);
-        in.close();
+class NetworkInput{
+    public static void main(String[] args){
+        try
+        {
+            Socket ghomepage = new Socket("google.com",80);
+            InputStream is = ghomepage.getInputStream();
+            OutputStream os = ghomepage.getOutputStream();
+            os.write("GET / HTTP/1.1\n\r\n\r".getBytes());
+            BufferedReader in = new BufferedReader(new InputStreamReader(ghomepage.getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null)
+                System.out.println(inputLine);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }
