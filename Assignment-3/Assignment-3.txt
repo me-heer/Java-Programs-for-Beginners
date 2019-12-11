@@ -1,5 +1,0 @@
-Java Assignment - 3 :
-1. Describe abstract class: Shape which has 3 subclasses: Triangle, Rectangle and Circle. Define an abstract method Area() in the abstract class and override this Area() method in these 3 subclasses to calculate the area of specific object.
-2. Write a program that illustrates interface inheritance extended by P1 & P2. Interface P12 inherits from both P1 & P2. Each interface declares one ocnstant and one method. Class Q implements P12. Instantiate Q & invoke each of its methods. Each method displays one of the constants.
-3. Write a program to create Interface and declare one method interest() having 3 arguments: Principle Amount, RateOfInterest, NumberOfYears. Then Create 2 classes simple Interest and Compound Interest then calculate these 2 interests.
-4. Write a program to implement Push & Pop operations using class.
