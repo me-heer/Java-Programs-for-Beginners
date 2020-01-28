@@ -1,34 +1,29 @@
 
-class Anagram {
-	public static void main(String args[])
-	{
-		boolean notAnagram = false;
-		String testString = args[0];
-		String testString2 = args[1];
-		int[] arrA = new int[26];
-		int[] arrB = new int[26];
-		for(int i = 0; i < testString.length(); i++)
-		{
-			char c = testString.charAt(i);
-			arrA[c - 96]++;
-		}
-		for(int i = 0; i < testString2.length(); i++)
-		{
-			char c = testString2.charAt(i);
-			arrB[c - 96]++;
-		}
-		for(int i = 0;i<26;i++)
-		{
-			if(arrA[i] != arrB[i])
+import java.util.*;
+public class Anagram {
+
+	public static void main(String[] args) {
+		Scanner inp = new Scanner(System.in);
+			System.out.println("Enter String1 : ");			
+			String str1 = inp.next();
+			System.out.println("Enter String2 : ");
+			String str2 = inp.next();
+			
+			if(str1.length() != str2.length())
 			{
-				notAnagram = true;
-				break;
+				System.out.println("NO");
 			}
-		}
-		if(notAnagram)
-			System.out.println("Not Anagram.");
-		else
-			System.out.println("Anagram.");
+		   else
+		   {
+			   char tmp1[] = str1.toCharArray();
+			   char tmp2[] = str2.toCharArray();
+			   Arrays.sort(tmp1);
+			   Arrays.sort(tmp2);
+			   String str11 = new String(tmp1);
+			   String str22 = new String(tmp2);
+			   if(str11.equals(str22)) System.out.println("YES");
+			   else System.out.println("NO");
+		   }
 	}
 
 }
